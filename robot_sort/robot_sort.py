@@ -94,10 +94,26 @@ class SortingRobot:
 
     def sort(self):
         """
-        Sort the robot's list.
+        In order to sort the list the robot can do the following
+        - Move R and L
+        - Pick up elements (picking up item, while holding another will result
+        in a swap)
+        - Can compare item it's holding to item in front of it
+        - Can switch healight On or Off
+        *** Task: Sort list using only these abilities.  Basically, we need to
+        use bubble sort for this problem.
         """
-        # Fill this out
-        pass
+        # turning on the rombot should provide a sort of flag.
+        self.set_light_on()
+        # move the robot right, to pick up and sort things while things exits
+        while self.can_move_right():
+            self.swap_item()
+
+            # we continue to move right and compare items simulatneously
+            while self.can_move_right():
+                self.move_right()
+                if self.compare_item() is 1:
+                    self.swap_item()
 
 
 if __name__ == "__main__":
